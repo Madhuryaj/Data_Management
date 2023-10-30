@@ -5,11 +5,11 @@ library(tidyverse)
 median(log2(small_file$Length))
 
 library(dplyr)
-select(trumpton,FirstName,LastName,Weight)
+select(trumpton, FirstName, LastName, Weight)
 
 #using position instead of columns
 
-select(trumpton,2,4)
+select(trumpton, 2, 4)
 class(trumpton)
 typeof(trumpton)
 typeof(trumpton$Weight)
@@ -21,3 +21,15 @@ typeof(trumpton$FirstName)
 select(trumpton,-LastName)
 select(trumpton,-FirstName)
 select(trumpton,-Age)
+
+#FILTER Function
+
+filter(trumpton, Height >= 170)
+
+filter(trumpton, FirstName == "Chris")
+
+#New file imported - Transform Data
+
+filter(transform_data, difference > 5)
+filter(transform_data, difference < -5)
+filter(transform_data, abs(difference) > 5)
