@@ -1,0 +1,45 @@
+#DATA MANAGEMENT CLASS - Week 8 - NOV 6th 2023
+
+library(tidyverse)
+summary(trumpton)
+
+table(trumpton$FirstName)
+hist(trumpton$Age)
+
+#converting to "tidy" format
+
+library(tidyr)
+
+MS <- marketing_strategies %>%
+  pivot_longer(col = UK_1:IR_3,
+               names_to = "Country_Time",
+               values_to = "Purchased_percent") %>%
+  separate(Country_Time, into = c("Country", "Time"))
+
+trumpton %>%
+  mutate(Category = if_else(Height > 180, "Tall", "Short"))
+
+trumpton %>%
+  mutate(weigh_stones = Weight * 0.16, height_feet = Height * 0, 33)
+
+#Data with NA Values
+
+#using the DatawithNA file
+
+#replace the age which is > 30 with the values 30
+
+DataWithNA %>% mutate(Age = replace(Age, Age > 30, 30))
+DataWithNA %>% mutate(Age = replace(Age, is.na(Age), 0))
+
+colSums(is.na(DataWithNA))
+
+group_data %>% group_by(Country)
+
+group_data %>% group_by(Country, Sex) %>% count()
+
+group_data %>% group_by(Country, Sex) %>% summarise(Av_Sepent = mean(Spend_Pounds),
+                                                    Av_Click = median(Clicks))
+
+group_data %>% mutate(Diff = Clicks - mean(Clicks))
+
+group_data %>% group_by(Country) %>% mutate(Diff = Clicks - mean(Clicks))
